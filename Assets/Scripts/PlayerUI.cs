@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
+    [Header("Screens")]
     public GameObject character;
-    public GameObject console;
+
+    [Header("Character Screens")]
+    public GameObject inventory;
+    public GameObject stats;
+    public GameObject news;
 
     private void Update()
     {
@@ -20,17 +25,26 @@ public class PlayerUI : MonoBehaviour
                 pc.SetPaused(character.activeSelf);
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            console.SetActive(!console.activeSelf);
+    public void OpenInventory()
+    {
+        inventory.SetActive(true);
+        stats.SetActive(false);
+        news.SetActive(false);
+    }
 
-            PlayerController pc = FindObjectOfType<PlayerController>();
+    public void OpenStats()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(true);
+        news.SetActive(false);
+    }
 
-            if (pc != null)
-            {
-                pc.SetPaused(console.activeSelf);
-            }
-        }
+    public void OpenNews()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(false);
+        news.SetActive(true);
     }
 }
